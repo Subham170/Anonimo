@@ -72,14 +72,15 @@ const page = () => {
       // callbackUrl: "/dashboard"
     });
     console.log("result", result);
-    
+
     if (result?.error) {
       toast.error(result.error);
       // setSubmitting(false);
     }
     if (result?.url) {
-      toast.success("Login successful redirecting to dashboard");
-      router.replace("/dashboard");
+      toast.success("Login successful ");
+      console.log("result.url", result.url);
+      router.push("/dashboard");
     }
   };
 

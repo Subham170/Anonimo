@@ -13,6 +13,7 @@ export async function GET(request : Request){
     }
    
     const user : User = session?.user  as User;
+    console.log("user munna", user);
     if (!user) {
         return new Response("User not found", { status: 404 });
     }
@@ -25,6 +26,7 @@ export async function GET(request : Request){
         {$sort : {"messages.createdAt" : -1}},
         {$group : {_id : "$_id", messages : {$push : "$messages"}}}
        ])
+       console.log("user", user);
        if(!user || user.length === 0){
             return Response.json(
                 {

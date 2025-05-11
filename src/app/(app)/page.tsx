@@ -1,4 +1,5 @@
 "use client";
+import Navbar from "@/components/Navbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Carousel,
@@ -12,7 +13,8 @@ import { Mail } from "lucide-react";
 
 const Home = () => {
   return (
-    <div className="flex flex-col h-screen bg-gray-800 text-white">
+    <div className="flex flex-col absolute inset-0 z-[-1] bg-gray-800 text-white">
+      {/* <Navbar/> */}
       {/* Main content fills the screen between navbar and footer */}
       <main className="flex-grow flex flex-col items-center justify-center px-4 md:px-24 py-6">
         <section className="text-center mb-6 md:mb-10">
@@ -52,7 +54,7 @@ const Home = () => {
       </main>
 
       {/* Footer */}
-      <footer className="h-16 text-center flex items-center justify-center bg-gray-900 text-white">
+      <footer className="h-16 text-center flex items-center absolute bottom-0 w-full justify-center bg-gray-900 text-white">
         © 2025 Anonimo. All rights reserved.
       </footer>
     </div>

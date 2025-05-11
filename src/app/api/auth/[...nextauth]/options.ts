@@ -33,7 +33,6 @@ export const authOptions: NextAuthOptions = {
           if (!user.isVerified) {
             console.log("User is not verified");
             throw new Error("User is not verified");
-            
           }
           const isPasswordCorrect = await bcrypt.compare(
             credentials.password,
@@ -76,5 +75,5 @@ export const authOptions: NextAuthOptions = {
   session: {
     strategy: "jwt",
   },
-  secret: process.env.NEXT_AUTH_SECRET,
+  secret: "new-to-next",
 };
