@@ -12,7 +12,7 @@ async function dbConnect(): Promise<void> {
         return;
     }
     try {
-        const db = await mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://SubhamDey:T0zrYPS2VPyASEZB@subhamdb.ubqol0o.mongodb.net/user?retryWrites=true&w=majority&appName=SubhamDB");
+        const db = await mongoose.connect(process.env.MONGODB_URI );
         connection.isConnected = db.connections[0].readyState;
         console.log("db connected");
     } catch (error) {

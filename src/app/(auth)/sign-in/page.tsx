@@ -1,22 +1,23 @@
-'use client';
+"use client";
 
-import {useEffect, useState} from "react";
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
-import Link from "next/link";
-import {useDebounceValue} from "usehooks-ts";
-import { toast } from "sonner";
-import { useRouter } from "next/navigation";
-import { signInSchema } from "@/schemas/signinSchema";
-import axios, { AxiosError } from "axios";
-import { ApiResponse } from "@/types/apiResponse";
-import { Form, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Loader2 } from "lucide-react";
+import {
+  Form,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { signInSchema } from "@/schemas/signinSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { signIn } from "next-auth/react";
-const page = ()=>{
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { toast } from "sonner";
+import * as z from "zod";
+const page = () => {
   // const [username, setUsername] = useState("");
   // const [usernameMessage, setUsernameMessage] = useState("");
   // const [isCheckingUsername, setIsCheckingUsername] = useState(false);
@@ -26,14 +27,14 @@ const page = ()=>{
   const router = useRouter();
 
   //zod implementation
-  const form  = useForm({
-    resolver : zodResolver(signInSchema),
+  const form = useForm({
+    resolver: zodResolver(signInSchema),
     defaultValues: {
       identifier: "",
-      
-      password : ""
-    }
-  })
+
+      password: "",
+    },
+  });
 
   // useEffect(() => {
   // const checkUsernameUnique = async () => {
@@ -43,15 +44,14 @@ const page = ()=>{
   //     try {
   //       const response = await axios.get(`/api/check-username-unique?username=${debouncedUsername}`);
   //       setUsernameMessage(response.data.message);
-        
+
   //     } catch (error) {
   //       const axiosError = error as AxiosError<ApiResponse>;
-        
+
   //         setUsernameMessage(axiosError.response?.data.message ?? "Error checking username");
-        
+
   //         toast.error("Something went wrong");
-        
-        
+
   //     } finally{
   //       setIsCheckingUsername(false);
   //     }
@@ -61,25 +61,29 @@ const page = ()=>{
   // checkUsernameUnique();
   // }, [debouncedUsername])
 
-  const onSubmit = async (data : z.infer<typeof signInSchema>) => {
-    
-    const result =await signIn("credentials", {
+  // console.log("form", form);
+
+  const onSubmit = async (data: z.infer<typeof signInSchema>) => {
+    console.log("data", data);
+    const result = await signIn("credentials", {
       identifier: data.identifier,
       password: data.password,
       redirect: false,
-    })
-    if(result?.error){
-      toast.error(result.error)
+      // callbackUrl: "/dashboard"
+    });
+    console.log("result", result);
+    
+    if (result?.error) {
+      toast.error(result.error);
       // setSubmitting(false);
     }
-    if(result?.url){
-      // toast.success("Login successful")
-      router.replace("/dashboard")
+    if (result?.url) {
+      toast.success("Login successful redirecting to dashboard");
+      router.replace("/dashboard");
     }
-    
-  }
+  };
 
-  return(
+  return (
     <div className="flex justify-center items-center min-h-screen bg-gray-800">
       <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
         <div className="text-center">
@@ -96,7 +100,7 @@ const page = ()=>{
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email/Username</FormLabel>
-                  <Input placeholder="email or username" {...field}  />
+                  <Input placeholder="email or username" {...field} />
                   <FormMessage />
                 </FormItem>
               )}
@@ -112,14 +116,14 @@ const page = ()=>{
                 </FormItem>
               )}
             />
-            <Button className='w-full' type="submit" >
+            <Button className="w-full hover:cursor-pointer" type="submit">
               Sign In
-              </Button>
+            </Button>
           </form>
         </Form>
         <div className="text-center mt-4">
           <p>
-            Not a member yet?{' '}
+            Not a member yet?{" "}
             <Link href="/sign-up" className="text-blue-600 hover:text-blue-800">
               Sign up
             </Link>
@@ -127,7 +131,7 @@ const page = ()=>{
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

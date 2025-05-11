@@ -28,8 +28,11 @@ const page = () => {
       try {
         const response = await axios.post(`/api/verify-code`,{
             username : param.username,
-            codeode : data.code
+            code : data.code
         })
+
+        console.log("response",response.data);
+        // toast(response.data);
 
         toast.success(response.data.message)
         router.replace('/sign-in')
