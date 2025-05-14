@@ -1,28 +1,47 @@
 [
-    {
-      "title": "Message from User123",
-      "content": "Hey, how are you doing today?",
-      "received": "10 minutes ago"
-    },
-    {
-      "title": "Message from SecretAdmirer",
-      "content": "I really liked your recent post!",
-      "received": "2 hours ago"
-    },
-    {
-      "title": "Message from MysteryGuest",
-      "content": "Do you have any book recommendations?",
-      "received": "1 day ago"
-    },
-    {
-      "title": "Message from CuriousCat",
-      "content": "What inspired your latest project?",
-      "received": "3 days ago"
-    },
-    {
-      "title": "Message from CodeBuddy",
-      "content": "Want to collaborate on a side project?",
-      "received": "1 week ago"
-    }
-  ]
-  
+  {
+    "title": "Message from ChatterBox",
+    "content": "Hey, how are you doing today?",
+    "received": "10 minutes ago"
+  },
+  {
+    "title": "Message from SecretAdmirer",
+    "content": "I really liked your recent post!",
+    "received": "2 hours ago"
+  },
+  {
+    "title": "Message from MysteryGuest",
+    "content": "Do you have any book recommendations?",
+    "received": "1 day ago"
+  },
+  {
+    "title": "Message from CuriousCat",
+    "content": "What inspired your latest project?",
+    "received": "3 days ago"
+  },
+  {
+    "title": "Message from CodeBuddy",
+    "content": "Want to collaborate on a side project?",
+    "received": "1 week ago"
+  },
+  {
+    "title": "Message from DevDude",
+    "content": "Check out this new JavaScript library I found!",
+    "received": "2 weeks ago"
+  },
+  {
+    "title": "Message from Bookworm42",
+    "content": "Have you finished reading 'Atomic Habits'?",
+    "received": "3 weeks ago"
+  },
+  {
+    "title": "Message from PixelPenguin",
+    "content": "Your UI design looks amazing!",
+    "received": "1 month ago"
+  },
+  {
+    "title": "Message from MentorMax",
+    "content": "Remember to update your portfolio regularly.",
+    "received": "2 months ago"
+  }
+]

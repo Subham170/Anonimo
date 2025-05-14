@@ -9,7 +9,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
-// i { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -21,6 +20,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+
 import { Button } from "./ui/button";
 import { X } from "lucide-react";
 import { Message } from "@/model/User";
@@ -29,48 +29,55 @@ import { ApiResponse } from "@/types/apiResponse";
 import { toast } from "sonner";
 
 type MessageCardProps = {
-   message : Message,
-   onMessageDelete : (messageId : string) => void
-}
+  message: Message;
+  onMessageDelete: (messageId: string) => void;
+};
 
-const MessageCard = ({message , onMessageDelete}: MessageCardProps) => {
-
-   const  handleDeleteConfirm = async () => {
-    const response = await axios.delete<ApiResponse>(`/api/delete-message/${message._id}`)
-        toast.success(response.data.message)
-        onMessageDelete(message._id as string)
-    
-    };
+const MessageCard = ({ message, onMessageDelete }: MessageCardProps) => {
+  const handleDeleteConfirm = async () => {
+    const response = await axios.delete<ApiResponse>(
+      `/api/delete-message/${message._id}`
+    );
+    toast.success(response.data.message);
+    onMessageDelete(message._id as string);
+  };
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>Card Title</CardTitle>
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
-            <Button variant="destructive"><X className="w-5 h-5" /></Button>
-          </AlertDialogTrigger>
-          <AlertDialogContent>
-            <AlertDialogHeader>
-              <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-              <AlertDialogDescription>
-                This action cannot be undone. This will permanently delete your
-                account and remove your data from our servers.
-              </AlertDialogDescription>
-            </AlertDialogHeader>
-            <AlertDialogFooter>
-              <AlertDialogCancel>Cancel</AlertDialogCancel>
-              <AlertDialogAction onClick={handleDeleteConfirm}>Continue</AlertDialogAction>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialog>
+    <Card className="relative">
+      {/* Top-right Delete Button */}
+      <AlertDialog>
+        <AlertDialogTrigger asChild>
+          <Button
+            variant="destructive"
+            className="absolute top-4 right-4 p-2 h-auto w-auto"
+          >
+            <X className="w-5 h-5" />
+          </Button>
+        </AlertDialogTrigger>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete the message and remove the data from our servers.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction onClick={handleDeleteConfirm}>
+              Continue
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
 
-        <CardDescription>Card Description</CardDescription>
+      <CardHeader>
+        <CardTitle>{message.content}</CardTitle>
+        {/* <CardDescription>Card Description</CardDescription> */}
       </CardHeader>
       <CardContent></CardContent>
-      <CardFooter>
+      {/* <CardFooter>
         <p>Card Footer</p>
-      </CardFooter>
+      </CardFooter> */}
     </Card>
   );
 };
