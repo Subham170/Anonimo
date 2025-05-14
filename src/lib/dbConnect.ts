@@ -14,7 +14,7 @@ async function dbConnect(): Promise<void> {
     return;
   }
   try {
-    const db = await mongoose.connect(process.env.MONGODB_URI);
+    const db = await mongoose.connect(process.env.MONGODB_URI || "mongodb+srv://SubhamDey:T0zrYPS2VPyASEZB@subhamdb.ubqol0o.mongodb.net/anonimo?retryWrites=true&w=majority&appName=SubhamDB");
     connection.isConnected = db.connections[0].readyState;
     console.log("db connected");
   } catch (error) {
